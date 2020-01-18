@@ -1,7 +1,9 @@
 package com.safframework.netdiagnose.app
 
 import android.app.Application
+import android.content.Context
 import com.safframework.netdiagnose.log.LogManager
+import kotlin.properties.Delegates
 
 /**
  *
@@ -15,6 +17,7 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        CONTEXT = applicationContext
 
         initLog()
     }
@@ -22,5 +25,9 @@ class App : Application() {
     private fun initLog() {
 
         LogManager.initLog()
+    }
+
+    companion object {
+        var CONTEXT: Context by Delegates.notNull()
     }
 }
