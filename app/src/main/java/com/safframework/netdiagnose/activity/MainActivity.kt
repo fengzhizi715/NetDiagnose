@@ -12,5 +12,17 @@ import com.safframework.netdiagnose.app.BaseActivity
  */
 class MainActivity : BaseActivity() {
 
+    override fun layoutId(): Int {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun initView() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun createObserver() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
 
 }
