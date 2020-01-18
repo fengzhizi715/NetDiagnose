@@ -35,4 +35,5 @@ dependencies {
 
     implementation "com.safframework.log:saf-log-core:${libs.log_core}"
     implementation "com.safframework.log:saf-log-file:${libs.log_core}"
+    implementation "com.safframework.log:saf-log-converter-gson:${libs.log_core}"
 }
