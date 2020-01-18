@@ -17,11 +17,7 @@ import com.safframework.log.printer.file.clean.FileLastModifiedCleanStrategy
  */
 object LogManager {
 
-    const val PREFIX_APP = "recycle_machine-app-"
-    const val PREFIX_AIYANJI = "recycle_machine-aiyanji-"
-    const val PREFIX_AP = "recycle_machine-ap-"
-    const val PREFIX_REMOTE = "recycle_machine-remote-"
-    const val PREFIX_HARDWARE = "recycle_machine-hardware-"
+    const val PREFIX_APP = "netdiagnose-app-"
 
     const val SEVEN_DAYS:Long = 24*3600*1000*7
 
