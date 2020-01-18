@@ -36,4 +36,8 @@ dependencies {
     implementation "com.safframework.log:saf-log-core:${libs.log_core}"
     implementation "com.safframework.log:saf-log-file:${libs.log_core}"
     implementation "com.safframework.log:saf-log-converter-gson:${libs.log_core}"
+
+    implementation "com.safframework.lifecycle:lifecycle-coroutine-ext:${libs.lifecycle_coroutine_ext}"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${libs.kotlinx_coroutines_core}"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${libs.kotlinx_coroutines_core}"
 }
