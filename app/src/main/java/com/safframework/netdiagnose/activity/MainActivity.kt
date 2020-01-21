@@ -38,6 +38,7 @@ class MainActivity : BaseActivity() {
         }
 
         text2.setOnClickListener {
+
         }
 
         text3.setOnClickListener {

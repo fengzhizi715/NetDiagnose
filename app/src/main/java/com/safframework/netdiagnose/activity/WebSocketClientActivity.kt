@@ -28,5 +28,13 @@ class WebSocketClientActivity : BaseActivity() {
 
         rece_list.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         rece_list.adapter = mReceMessageAdapter
+
+        config.setOnClickListener {
+
+        }
+
+        connect.setOnClickListener {
+
+        }
     }
 }

@@ -1,13 +1,13 @@
 package com.safframework.netdiagnose.log
 
 import android.os.Environment
+import com.safframework.ext.getAppVersion
 import com.safframework.log.configL
 import com.safframework.log.converter.gson.GsonConverter
 import com.safframework.log.printer.FilePrinter
 import com.safframework.log.printer.file.FileBuilder
 import com.safframework.log.printer.file.clean.FileLastModifiedCleanStrategy
 import com.safframework.netdiagnose.app.App
-import com.safframework.netdiagnose.kotlin.extension.getAppVersion
 
 /**
  *
