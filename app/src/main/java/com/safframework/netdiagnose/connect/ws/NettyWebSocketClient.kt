@@ -42,14 +42,14 @@ class NettyWebSocketClient(val serverURI:URI,val mListener: NettyClientListener<
     }
 
     override fun onMessage(message: ByteBuffer) {
-        L.i(msg = "received ByteBuffer")
+        L.i("received ByteBuffer")
     }
 
     override fun onError(ex: Exception) {
-        L.i(logLevel = LogLevel.ERROR, msg = "an error occurred:$ex")
+        L.e("an error occurred:$ex")
     }
 
-    fun sendCommand(text: String) {
+    fun sendMessage(text: String) {
         send(text)
     }
 }
