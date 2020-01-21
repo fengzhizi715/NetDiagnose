@@ -3,6 +3,8 @@ package com.safframework.netdiagnose.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.safframework.netdiagnose.utils.NetHelper
+import com.safframework.netdiagnose.kotlin.function.Result
+import com.safframework.netdiagnose.kotlin.function.resultFrom
 
 /**
  *
@@ -14,11 +16,15 @@ import com.safframework.netdiagnose.utils.NetHelper
  */
 class MainViewModel : BaseViewModel() {
 
-    private var result = MutableLiveData<Boolean>()
+    private var liveData = MutableLiveData<Result<Boolean,Exception>>()
 
-    fun getPingResult(): LiveData<Boolean> {
+    fun getPing(): LiveData<Result<Boolean,Exception>> {
 
-        result.postValue(NetHelper.ping(3000))
-        return result
+        val result = resultFrom {
+            NetHelper.ping(3000)
+        }
+
+        liveData.postValue(result)
+        return liveData
     }
 }

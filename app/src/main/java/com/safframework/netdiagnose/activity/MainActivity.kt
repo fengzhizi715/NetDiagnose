@@ -5,6 +5,7 @@ import com.safframework.log.L
 import com.safframework.netdiagnose.R
 import com.safframework.netdiagnose.app.BaseActivity
 import com.safframework.netdiagnose.kotlin.delegate.viewModelDelegate
+import com.safframework.netdiagnose.kotlin.function.get
 import com.safframework.netdiagnose.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -26,9 +27,9 @@ class MainActivity : BaseActivity() {
 
         text1.setOnClickListener {
 
-            mainViewModel.getPingResult().observe(this, Observer {
+            mainViewModel.getPing().observe(this, Observer {
 
-                L.i("result = "+it)
+                L.i("result = "+it.get())
             })
         }
 
