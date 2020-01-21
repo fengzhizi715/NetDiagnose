@@ -6,6 +6,8 @@ import com.safframework.log.converter.gson.GsonConverter
 import com.safframework.log.printer.FilePrinter
 import com.safframework.log.printer.file.FileBuilder
 import com.safframework.log.printer.file.clean.FileLastModifiedCleanStrategy
+import com.safframework.netdiagnose.app.App
+import com.safframework.netdiagnose.extension.getAppVersion
 
 /**
  *
@@ -40,6 +42,9 @@ object LogManager {
     fun initLog() {
 
         configL {
+
+            header = App.CONTEXT.getAppVersion()
+
             converter = GsonConverter()
         }.apply {
             addPrinter(filePrinter)
