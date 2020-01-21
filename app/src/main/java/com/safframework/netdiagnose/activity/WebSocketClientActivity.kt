@@ -1,6 +1,7 @@
 package com.safframework.netdiagnose.activity
 
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.safframework.ext.clickWithTrigger
 import com.safframework.netdiagnose.R
 import com.safframework.netdiagnose.adapter.MessageAdapter
 import com.safframework.netdiagnose.app.BaseActivity
@@ -29,11 +30,11 @@ class WebSocketClientActivity : BaseActivity() {
         rece_list.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         rece_list.adapter = mReceMessageAdapter
 
-        config.setOnClickListener {
+        config.clickWithTrigger {
 
         }
 
-        connect.setOnClickListener {
+        connect.clickWithTrigger {
 
         }
     }

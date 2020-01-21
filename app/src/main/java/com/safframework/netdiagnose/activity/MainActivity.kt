@@ -3,6 +3,7 @@ package com.safframework.netdiagnose.activity
 import android.content.Intent
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import com.safframework.ext.clickWithTrigger
 import com.safframework.log.L
 import com.safframework.netdiagnose.R
 import com.safframework.netdiagnose.app.BaseActivity
@@ -27,7 +28,7 @@ class MainActivity : BaseActivity() {
 
     override fun initView() {
 
-        text1.setOnClickListener {
+        text1.clickWithTrigger {
 
             mainViewModel.getPingResult().observe(this, Observer {
 
@@ -37,11 +38,11 @@ class MainActivity : BaseActivity() {
             })
         }
 
-        text2.setOnClickListener {
+        text2.clickWithTrigger {
 
         }
 
-        text3.setOnClickListener {
+        text3.clickWithTrigger {
 
             val intent = Intent(this@MainActivity,WebSocketClientActivity::class.java)
             startActivity(intent)

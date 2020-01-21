@@ -2,6 +2,7 @@ package com.safframework.netdiagnose.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.safframework.netdiagnose.app.BaseViewModel
 import com.safframework.netdiagnose.utils.NetHelper
 import com.safframework.netdiagnose.kotlin.function.Result
 import com.safframework.netdiagnose.kotlin.function.resultFrom

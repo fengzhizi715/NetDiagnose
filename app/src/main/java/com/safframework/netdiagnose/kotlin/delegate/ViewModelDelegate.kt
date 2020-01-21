@@ -3,7 +3,7 @@ package com.safframework.netdiagnose.kotlin.delegate
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.safframework.netdiagnose.app.BaseActivity
-import com.safframework.netdiagnose.viewmodel.BaseViewModel
+import com.safframework.netdiagnose.app.BaseViewModel
 import kotlin.reflect.KClass
 import kotlin.reflect.KProperty
 
