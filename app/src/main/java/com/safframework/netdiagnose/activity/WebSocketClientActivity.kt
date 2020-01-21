@@ -1,7 +1,10 @@
 package com.safframework.netdiagnose.activity
 
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.safframework.netdiagnose.R
+import com.safframework.netdiagnose.adapter.MessageAdapter
 import com.safframework.netdiagnose.app.BaseActivity
+import kotlinx.android.synthetic.main.activity_websocket_client.*
 
 /**
  *
@@ -13,8 +16,17 @@ import com.safframework.netdiagnose.app.BaseActivity
  */
 class WebSocketClientActivity : BaseActivity() {
 
+    private val mSendMessageAdapter = MessageAdapter()
+    private val mReceMessageAdapter = MessageAdapter()
+
     override fun layoutId(): Int = R.layout.activity_websocket_client
 
     override fun initView() {
+
+        send_list.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        send_list.adapter = mSendMessageAdapter
+
+        rece_list.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        rece_list.adapter = mReceMessageAdapter
     }
 }
