@@ -1,4 +1,4 @@
-package com.safframework.netdiagnose.extension
+package com.safframework.netdiagnose.kotlin.extension
 
 import android.content.Context
 import android.content.pm.PackageManager
@@ -6,7 +6,7 @@ import android.content.pm.PackageManager
 /**
  *
  * @FileName:
- *          com.safframework.netdiagnose.extension.`Context+Extension`
+ *          com.safframework.netdiagnose.kotlin.extension.`Context+Extension`
  * @author: Tony Shen
  * @date: 2020-01-21 15:56
  * @version: V1.0 <描述当前版本功能>

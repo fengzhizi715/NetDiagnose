@@ -1,4 +1,4 @@
-package com.safframework.netdiagnose.delegate
+package com.safframework.netdiagnose.kotlin.delegate
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -10,14 +10,14 @@ import kotlin.reflect.KProperty
 /**
  *
  * @FileName:
- *          com.safframework.netdiagnose.delegate.ViewModelDelegate
+ *          com.safframework.netdiagnose.kotlin.delegate.ViewModelDelegate
  * @author: Tony Shen
  * @date: 2020-01-21 16:46
  * @version: V1.0 <描述当前版本功能>
  */
 class ViewModelDelegate<out T : BaseViewModel>(private val clazz: KClass<T>, private val fromActivity: Boolean) {
 
-    private var viewModel: T? = null
+    private lateinit var viewModel: T
 
     operator fun getValue(thisRef: BaseActivity, property: KProperty<*>) = buildViewModel(activity = thisRef)
 
@@ -35,7 +35,7 @@ class ViewModelDelegate<out T : BaseViewModel>(private val clazz: KClass<T>, pri
             viewModel = ViewModelProviders.of(it).get(clazz.java)
         } ?: throw IllegalStateException("Activity or Fragment is null! ")
 
-        return viewModel!!
+        return viewModel
     }
 }
 

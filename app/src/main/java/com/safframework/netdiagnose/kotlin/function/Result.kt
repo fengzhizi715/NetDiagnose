@@ -1,9 +1,9 @@
-package com.safframework.netdiagnose.function
+package com.safframework.netdiagnose.kotlin.function
 
 /**
  *
  * @FileName:
- *          com.safframework.netdiagnose.function.Result
+ *          com.safframework.netdiagnose.kotlin.function.Result
  * @author: Tony Shen
  * @date: 2020-01-21 15:33
  * @version: V1.0 <描述当前版本功能>
