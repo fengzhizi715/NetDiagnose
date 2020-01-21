@@ -18,7 +18,7 @@ class MainViewModel : BaseViewModel() {
 
     private var liveData = MutableLiveData<Result<Boolean,Exception>>()
 
-    fun getPing(): LiveData<Result<Boolean,Exception>> {
+    fun getPingResult(): LiveData<Result<Boolean,Exception>> {
 
         val result = resultFrom {
             NetHelper.ping(3000)

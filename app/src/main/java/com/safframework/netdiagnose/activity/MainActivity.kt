@@ -1,5 +1,7 @@
 package com.safframework.netdiagnose.activity
 
+import android.content.Intent
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.safframework.log.L
 import com.safframework.netdiagnose.R
@@ -27,11 +29,21 @@ class MainActivity : BaseActivity() {
 
         text1.setOnClickListener {
 
-            mainViewModel.getPing().observe(this, Observer {
+            mainViewModel.getPingResult().observe(this, Observer {
 
-                L.i("result = "+it.get())
+                L.i("result = ${it.get()}")
+
+                Toast.makeText(this@MainActivity,"result = ${it.get()}",Toast.LENGTH_LONG).show()
             })
         }
 
+        text2.setOnClickListener {
+        }
+
+        text3.setOnClickListener {
+
+            val intent = Intent(this@MainActivity,WebSocketClientActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
