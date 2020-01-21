@@ -37,5 +37,16 @@ class WebSocketClientActivity : BaseActivity() {
         connect.clickWithTrigger {
 
         }
+
+        send.clickWithTrigger{
+
+        }
+
+        clear.clickWithTrigger {
+            mReceMessageAdapter.dataList.clear()
+            mSendMessageAdapter.dataList.clear()
+            mReceMessageAdapter.notifyDataSetChanged()
+            mSendMessageAdapter.notifyDataSetChanged()
+        }
     }
 }
