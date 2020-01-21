@@ -17,7 +17,7 @@ import kotlin.reflect.KProperty
  */
 class ViewModelDelegate<out T : BaseViewModel>(private val clazz: KClass<T>, private val fromActivity: Boolean) {
 
-    private lateinit var viewModel: T
+    private var viewModel: T?=null
 
     operator fun getValue(thisRef: BaseActivity, property: KProperty<*>) = buildViewModel(activity = thisRef)
 
@@ -35,7 +35,7 @@ class ViewModelDelegate<out T : BaseViewModel>(private val clazz: KClass<T>, pri
             viewModel = ViewModelProviders.of(it).get(clazz.java)
         } ?: throw IllegalStateException("Activity or Fragment is null! ")
 
-        return viewModel
+        return viewModel!!
     }
 }
 

@@ -21,11 +21,5 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(layoutId())
         initView()
-        createObserver()
     }
-
-    /**
-     * 创建观察者
-     */
-    abstract fun createObserver()
 }
