@@ -43,7 +43,7 @@ object LogManager {
 
         configL {
 
-            header = "App Version:${App.CONTEXT.getAppVersion()}"
+            header = "App Version ${App.CONTEXT.getAppVersion()}"
 
             converter = GsonConverter()
         }.apply {

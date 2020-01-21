@@ -2,6 +2,7 @@ package com.safframework.netdiagnose.activity
 
 import com.safframework.netdiagnose.R
 import com.safframework.netdiagnose.app.BaseActivity
+import kotlinx.android.synthetic.main.activity_main.*
 
 /**
  *
@@ -17,6 +18,9 @@ class MainActivity : BaseActivity() {
 
     override fun initView() {
 
+        text1.setOnClickListener {
+
+        }
 
     }
 
