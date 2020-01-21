@@ -1,5 +1,6 @@
 package com.safframework.netdiagnose.activity
 
+import com.safframework.netdiagnose.R
 import com.safframework.netdiagnose.app.BaseActivity
 
 /**
@@ -12,13 +13,8 @@ import com.safframework.netdiagnose.app.BaseActivity
  */
 class WebSocketClientActivity : BaseActivity() {
 
-    override fun layoutId(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun layoutId(): Int = R.layout.activity_websocket_client
 
     override fun initView() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
-
-
 }

@@ -21,7 +21,7 @@ class MainViewModel : BaseViewModel() {
     fun getPingResult(): LiveData<Result<Boolean,Exception>> {
 
         val result = resultFrom {
-            NetHelper.ping(3000)
+            NetHelper.ping()
         }
 
         liveData.postValue(result)
