@@ -11,7 +11,7 @@
         android:layout_margin="10dp"
         android:background="@drawable/textview_border"
         android:gravity="center"
-        android:text="检测网络(Ping)"/>
+        android:text="@string/check_ping"/>
 
     <TextView
         android:id="@+id/text2"

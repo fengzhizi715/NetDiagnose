@@ -47,6 +47,8 @@ class WebSocketClientActivity : BaseActivity() {
 
     override fun initView() {
 
+        title = resources.getString(R.string.check_ws)
+
         send_list.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         send_list.adapter = mSendMessageAdapter
 

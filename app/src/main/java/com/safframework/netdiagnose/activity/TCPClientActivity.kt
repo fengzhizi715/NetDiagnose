@@ -41,6 +41,8 @@ class TCPClientActivity : BaseActivity() {
 
     override fun initView() {
 
+        title = resources.getString(R.string.check_tcp)
+
         send_list.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         send_list.adapter = mSendMessageAdapter
 
@@ -63,8 +65,6 @@ class TCPClientActivity : BaseActivity() {
                 tcpClientViewModel.getResult(msg,host,port,flag).observe(this, Observer {
 
                     L.i("result = ${it.get()}")
-
-
                 })
 
             } else {
