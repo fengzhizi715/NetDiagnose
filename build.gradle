@@ -3,7 +3,7 @@ ext {
     configuration = [
             buildToolsVersion: "29.0.2",
             compileVersion   : 29,
-            minSdk           : 15,
+            minSdk           : 19,
             targetSdk        : 29
     ]
 

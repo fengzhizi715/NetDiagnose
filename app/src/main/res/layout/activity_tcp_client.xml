@@ -54,15 +54,6 @@
                     android:textAllCaps="false" />
 
                 <Button
-                    android:id="@+id/connect"
-                    style="?android:textAppearanceSmall"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="connect"
-                    android:textAllCaps="false" />
-
-                <Button
                     android:id="@+id/clear"
                     style="?android:textAppearanceSmall"
                     android:layout_width="match_parent"
@@ -70,16 +61,6 @@
                     android:layout_weight="1"
                     android:text="clear"
                     android:textAllCaps="false" />
-
-                <Button
-                    android:id="@+id/stop"
-                    style="?android:textAppearanceSmall"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="stop"
-                    android:textAllCaps="false" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -107,11 +88,13 @@
             </LinearLayout>
 
             <RadioGroup
+                android:id="@+id/rg"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:layout_height="45dp">
 
                 <RadioButton
+                    android:id="@+id/rb_hex"
                     android:layout_width="wrap_content"
                     android:text="十六机制发送"
                     android:layout_height="match_parent" />
