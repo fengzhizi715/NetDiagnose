@@ -40,12 +40,12 @@ class MainActivity : BaseActivity() {
 
         text2.clickWithTrigger {
 
+            startActivity(Intent(this@MainActivity,TCPClientActivity::class.java))
         }
 
         text3.clickWithTrigger {
 
-            val intent = Intent(this@MainActivity,WebSocketClientActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this@MainActivity,WebSocketClientActivity::class.java))
         }
     }
 }
