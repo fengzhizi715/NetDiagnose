@@ -4,7 +4,6 @@ import android.content.Intent
 import android.text.TextUtils
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.safframework.ext.clickWithTrigger
 import com.safframework.log.L
@@ -14,6 +13,7 @@ import com.safframework.netdiagnose.app.BaseActivity
 import com.safframework.netdiagnose.connect.ws.WSClientListener
 import com.safframework.netdiagnose.domain.MessageBean
 import com.safframework.netdiagnose.kotlin.delegate.viewModelDelegate
+import com.safframework.netdiagnose.kotlin.extension.observe
 import com.safframework.netdiagnose.viewmodel.ServerAddressViewModel
 import com.safframework.netdiagnose.viewmodel.WSClientViewModel
 import kotlinx.android.synthetic.main.activity_websocket_client.*
@@ -116,10 +116,9 @@ class WebSocketClientActivity : BaseActivity() {
             wsClientViewModel.stop()
         }
 
-        serverAddressViewModel.getAddress().observe(this, Observer {
-
+        this.observe(serverAddressViewModel.getAddress()) {
             server_address.text = it
-        })
+        }
 
         serverAddressViewModel.getAddress().value = "服务端地址:"
     }

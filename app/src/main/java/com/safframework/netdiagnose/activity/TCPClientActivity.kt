@@ -11,6 +11,7 @@ import com.safframework.netdiagnose.adapter.MessageAdapter
 import com.safframework.netdiagnose.app.BaseActivity
 import com.safframework.netdiagnose.kotlin.delegate.viewModelDelegate
 import com.safframework.netdiagnose.kotlin.function.get
+import com.safframework.netdiagnose.viewmodel.ServerAddressViewModel
 import com.safframework.netdiagnose.viewmodel.TCPClientViewModel
 import kotlinx.android.synthetic.main.activity_tcp_client.*
 
@@ -26,6 +27,7 @@ import kotlinx.android.synthetic.main.activity_tcp_client.*
 class TCPClientActivity : BaseActivity() {
 
     private val tcpClientViewModel by viewModelDelegate(TCPClientViewModel::class)
+    private val serverAddressViewModel by viewModelDelegate(ServerAddressViewModel::class)
 
     private val mSendMessageAdapter = MessageAdapter()
     private val mReceMessageAdapter = MessageAdapter()
