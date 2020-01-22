@@ -71,6 +71,8 @@ class WebSocketClientActivity : BaseActivity() {
             } else {
                 if (url.isNotEmpty()) {
                     wsClientViewModel.connect(url,mListener)
+                } else {
+                    Toast.makeText(this@WebSocketClientActivity, "请先配置服务端地址，再进行连接", LENGTH_SHORT).show()
                 }
             }
         }
