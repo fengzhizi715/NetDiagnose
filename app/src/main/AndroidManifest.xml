@@ -23,6 +23,7 @@
         </activity>
 
         <activity android:name=".activity.WebSocketClientActivity" />
+        <activity android:name=".activity.ConfigWSClientActivity" />
     </application>
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
