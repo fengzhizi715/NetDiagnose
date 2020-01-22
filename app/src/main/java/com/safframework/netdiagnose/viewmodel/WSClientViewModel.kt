@@ -2,6 +2,7 @@ package com.safframework.netdiagnose.viewmodel
 
 import com.safframework.netdiagnose.app.BaseViewModel
 import com.safframework.netdiagnose.connect.ws.WSClient
+import com.safframework.netdiagnose.connect.ws.WSClientListener
 
 /**
  *
@@ -13,9 +14,9 @@ import com.safframework.netdiagnose.connect.ws.WSClient
  */
 class WSClientViewModel : BaseViewModel() {
 
-    fun connect(url:String) {
+    fun connect(url:String,mListener: WSClientListener<String>) {
 
-        WSClient.connect(url)
+        WSClient.connect(url,mListener)
     }
 
     fun getConnectStatus():Boolean {

@@ -8,6 +8,9 @@ import com.safframework.ext.clickWithTrigger
 import com.safframework.netdiagnose.R
 import com.safframework.netdiagnose.adapter.MessageAdapter
 import com.safframework.netdiagnose.app.BaseActivity
+import com.safframework.netdiagnose.connect.ws.WSClient
+import com.safframework.netdiagnose.connect.ws.WSClientListener
+import com.safframework.netdiagnose.domain.MessageBean
 import com.safframework.netdiagnose.kotlin.delegate.viewModelDelegate
 import com.safframework.netdiagnose.viewmodel.MainViewModel
 import com.safframework.netdiagnose.viewmodel.WSClientViewModel
@@ -30,6 +33,14 @@ class WebSocketClientActivity : BaseActivity() {
 
     private var url:String = ""
 
+    private val mListener = object : WSClientListener<String> {
+
+        override fun onMessageResponseClient(msg: String) {
+
+            handlerMsg(msg)
+        }
+    }
+
     override fun layoutId(): Int = R.layout.activity_websocket_client
 
     override fun initView() {
@@ -45,8 +56,14 @@ class WebSocketClientActivity : BaseActivity() {
         }
 
         connect.clickWithTrigger {
-            if (url.isNotEmpty()) {
-                wsClientViewModel.connect(url)
+
+            if (wsClientViewModel.getConnectStatus()) {
+
+                Toast.makeText(this@WebSocketClientActivity, "已经连接，无需重复连接", LENGTH_SHORT).show()
+            } else {
+                if (url.isNotEmpty()) {
+                    wsClientViewModel.connect(url,mListener)
+                }
             }
         }
 
@@ -60,8 +77,12 @@ class WebSocketClientActivity : BaseActivity() {
                 }
 
                 wsClientViewModel.send(msg)
-
-                send_et.setText("")
+                val messageBean = MessageBean(System.currentTimeMillis(), msg)
+                mSendMessageAdapter.dataList.add(0, messageBean)
+                runOnUiThread {
+                    send_et.setText("")
+                    mSendMessageAdapter.notifyDataSetChanged()
+                }
             } else {
 
                 Toast.makeText(this@WebSocketClientActivity, "未连接,请先连接", LENGTH_SHORT).show()
@@ -78,5 +99,14 @@ class WebSocketClientActivity : BaseActivity() {
         stop.clickWithTrigger {
             wsClientViewModel.stop()
         }
+    }
+
+    /**
+     * 处理服务端收到的信息
+     */
+    private fun handlerMsg(message: String) {
+        val messageBean = MessageBean(System.currentTimeMillis(), message)
+        mReceMessageAdapter.dataList.add(0, messageBean)
+        runOnUiThread { mReceMessageAdapter.notifyDataSetChanged() }
     }
 }

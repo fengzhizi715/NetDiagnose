@@ -14,16 +14,8 @@ object WSClient {
 
     private var client: NettyWebSocketClient? = null
 
-    private val mListener = object : WSClientListener<String> {
-
-        override fun onMessageResponseClient(msg: String) {
-
-            handlerMsg(msg)
-        }
-    }
-
     @JvmStatic
-    fun connect(url:String) {
+    fun connect(url:String,mListener: WSClientListener<String>) {
 
         stop()
 
@@ -54,12 +46,5 @@ object WSClient {
                 it.close()
             }
         }
-    }
-
-    /**
-     * 处理服务端收到的信息
-     */
-    private fun handlerMsg(msg: String) {
-
     }
 }
