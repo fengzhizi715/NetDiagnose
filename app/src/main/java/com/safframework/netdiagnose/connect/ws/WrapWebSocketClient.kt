@@ -1,7 +1,6 @@
 package com.safframework.netdiagnose.connect.ws
 
 import com.safframework.log.L
-import com.safframework.log.LogLevel
 import org.java_websocket.client.WebSocketClient
 import org.java_websocket.handshake.ServerHandshake
 import java.net.URI

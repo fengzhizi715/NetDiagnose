@@ -10,7 +10,7 @@ import java.net.URI
  * @date: 2020-01-06 12:39
  * @version: V1.0 <描述当前版本功能>
  */
-object NettyClient {
+object WSClient {
 
     private var client: NettyWebSocketClient? = null
 
@@ -25,7 +25,7 @@ object NettyClient {
     }
 
     @JvmStatic
-    fun connect() {
+    fun connect(url:String) {
 
         stop()
 
