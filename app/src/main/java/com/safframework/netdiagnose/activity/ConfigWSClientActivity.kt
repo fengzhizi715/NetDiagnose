@@ -1,6 +1,12 @@
 package com.safframework.netdiagnose.activity
 
+import android.app.Activity
+import android.content.Intent
+import android.text.Editable
+import android.widget.Toast
+import com.safframework.netdiagnose.R
 import com.safframework.netdiagnose.app.BaseActivity
+import kotlinx.android.synthetic.main.activity_config_ws_client.*
 
 /**
  *
@@ -12,12 +18,30 @@ import com.safframework.netdiagnose.app.BaseActivity
  */
 class ConfigWSClientActivity :BaseActivity(){
 
-    override fun layoutId(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun layoutId():Int = R.layout.activity_config_ws_client
 
     override fun initView() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
+        intent.extras?.let {
+            val url = it.getString("url")
+            url_edit.text = Editable.Factory.getInstance().newEditable(url)
+            url_edit.setSelection(url!!.length)
+        }
+
+        update.setOnClickListener {
+
+            if (url_edit.text.isNotBlank()) {
+
+                val intent = Intent(this@ConfigWSClientActivity, WebSocketClientActivity::class.java).apply {
+                    putExtra("url", url_edit.text.toString())
+                }
+
+                setResult(Activity.RESULT_OK, intent)
+                finish()
+            } else {
+
+                Toast.makeText(this@ConfigWSClientActivity, "请输入服务端地址", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
 }

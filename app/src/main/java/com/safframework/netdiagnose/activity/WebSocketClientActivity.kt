@@ -1,18 +1,18 @@
 package com.safframework.netdiagnose.activity
 
+import android.content.Intent
 import android.text.TextUtils
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.safframework.ext.clickWithTrigger
+import com.safframework.log.L
 import com.safframework.netdiagnose.R
 import com.safframework.netdiagnose.adapter.MessageAdapter
 import com.safframework.netdiagnose.app.BaseActivity
-import com.safframework.netdiagnose.connect.ws.WSClient
 import com.safframework.netdiagnose.connect.ws.WSClientListener
 import com.safframework.netdiagnose.domain.MessageBean
 import com.safframework.netdiagnose.kotlin.delegate.viewModelDelegate
-import com.safframework.netdiagnose.viewmodel.MainViewModel
 import com.safframework.netdiagnose.viewmodel.WSClientViewModel
 import kotlinx.android.synthetic.main.activity_websocket_client.*
 
@@ -33,6 +33,8 @@ class WebSocketClientActivity : BaseActivity() {
 
     private var url:String = ""
 
+    private val REQUEST_CODE_CONFIG:Int = 1000
+
     private val mListener = object : WSClientListener<String> {
 
         override fun onMessageResponseClient(msg: String) {
@@ -52,6 +54,12 @@ class WebSocketClientActivity : BaseActivity() {
         rece_list.adapter = mReceMessageAdapter
 
         config.clickWithTrigger {
+
+            val intent = Intent(this@WebSocketClientActivity,ConfigWSClientActivity::class.java).apply {
+                putExtra("url",url)
+            }
+
+            startActivityForResult(intent,REQUEST_CODE_CONFIG)
 
         }
 
@@ -108,5 +116,16 @@ class WebSocketClientActivity : BaseActivity() {
         val messageBean = MessageBean(System.currentTimeMillis(), message)
         mReceMessageAdapter.dataList.add(0, messageBean)
         runOnUiThread { mReceMessageAdapter.notifyDataSetChanged() }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == REQUEST_CODE_CONFIG && data!=null) {
+
+            url = data.getStringExtra("url")
+
+            L.i("url=$url")
+        }
     }
 }
