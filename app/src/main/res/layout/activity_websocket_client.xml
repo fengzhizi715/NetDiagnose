@@ -72,11 +72,12 @@
                     android:textAllCaps="false" />
 
                 <Button
+                    android:id="@+id/stop"
                     style="?android:textAppearanceSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="disconnect"
+                    android:text="stop"
                     android:textAllCaps="false" />
 
             </LinearLayout>

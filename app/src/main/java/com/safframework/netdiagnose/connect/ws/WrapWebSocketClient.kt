@@ -14,7 +14,7 @@ import java.nio.ByteBuffer
  * @date: 2020-01-06 10:14
  * @version: V1.0 <描述当前版本功能>
  */
-interface NettyClientListener<T> {
+interface WSClientListener<T> {
 
     /**
      *
@@ -24,14 +24,22 @@ interface NettyClientListener<T> {
     fun onMessageResponseClient(msg: T)
 }
 
-class NettyWebSocketClient(val serverURI:URI,val mListener: NettyClientListener<String>): WebSocketClient(serverURI) {
+class NettyWebSocketClient(val serverURI:URI,val mListener: WSClientListener<String>): WebSocketClient(serverURI) {
+
+    /**
+     * 获取WS连接状态
+     *
+     */
+    var connectStatus = false
 
     override fun onOpen(handshakedata: ServerHandshake) {
         L.i("new connection opened")
+        connectStatus = true
     }
 
     override fun onClose(code: Int, reason: String, remote: Boolean) {
         L.i("closed with exit code $code additional info: $reason")
+        connectStatus = false
     }
 
     override fun onMessage(message: String) {
@@ -46,9 +54,6 @@ class NettyWebSocketClient(val serverURI:URI,val mListener: NettyClientListener<
 
     override fun onError(ex: Exception) {
         L.e("an error occurred:$ex")
-    }
-
-    fun sendMessage(text: String) {
-        send(text)
+        connectStatus = false
     }
 }

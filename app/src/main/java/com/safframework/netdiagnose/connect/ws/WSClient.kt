@@ -14,9 +14,7 @@ object WSClient {
 
     private var client: NettyWebSocketClient? = null
 
-    private var url = ""
-
-    private val mListener = object : NettyClientListener<String> {
+    private val mListener = object : WSClientListener<String> {
 
         override fun onMessageResponseClient(msg: String) {
 
