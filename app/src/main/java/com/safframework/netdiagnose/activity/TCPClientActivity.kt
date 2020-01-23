@@ -9,11 +9,20 @@ import com.safframework.log.L
 import com.safframework.netdiagnose.R
 import com.safframework.netdiagnose.adapter.MessageAdapter
 import com.safframework.netdiagnose.app.BaseActivity
+import com.safframework.netdiagnose.domain.MessageBean
 import com.safframework.netdiagnose.kotlin.delegate.viewModelDelegate
+import com.safframework.netdiagnose.kotlin.extension.observe
 import com.safframework.netdiagnose.kotlin.function.get
 import com.safframework.netdiagnose.viewmodel.ServerAddressViewModel
 import com.safframework.netdiagnose.viewmodel.TCPClientViewModel
 import kotlinx.android.synthetic.main.activity_tcp_client.*
+import kotlinx.android.synthetic.main.activity_tcp_client.clear
+import kotlinx.android.synthetic.main.activity_tcp_client.config
+import kotlinx.android.synthetic.main.activity_tcp_client.rece_list
+import kotlinx.android.synthetic.main.activity_tcp_client.send
+import kotlinx.android.synthetic.main.activity_tcp_client.send_et
+import kotlinx.android.synthetic.main.activity_tcp_client.send_list
+import kotlinx.android.synthetic.main.activity_tcp_client.server_address
 
 
 /**
@@ -67,6 +76,17 @@ class TCPClientActivity : BaseActivity() {
                 tcpClientViewModel.getResult(msg,host,port,flag).observe(this, Observer {
 
                     L.i("result = ${it.get()}")
+
+                    if (it.get() !is Exception) {
+                        val messageBean = MessageBean(System.currentTimeMillis(), msg)
+                        mSendMessageAdapter.dataList.add(0, messageBean)
+                        runOnUiThread {
+                            send_et.setText("")
+                            mSendMessageAdapter.notifyDataSetChanged()
+                        }
+
+                        handlerMsg(it.get().toString())
+                    }
                 })
 
             } else {
@@ -91,5 +111,20 @@ class TCPClientActivity : BaseActivity() {
             mReceMessageAdapter.notifyDataSetChanged()
             mSendMessageAdapter.notifyDataSetChanged()
         }
+
+        this.observe(serverAddressViewModel.getAddress()) {
+            server_address.text = it
+        }
+
+        serverAddressViewModel.getAddress().value = "服务端地址:"
+    }
+
+    /**
+     * 处理服务端收到的信息
+     */
+    private fun handlerMsg(message: String) {
+        val messageBean = MessageBean(System.currentTimeMillis(), message)
+        mReceMessageAdapter.dataList.add(0, messageBean)
+        runOnUiThread { mReceMessageAdapter.notifyDataSetChanged() }
     }
 }
