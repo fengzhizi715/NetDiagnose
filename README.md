@@ -6,3 +6,6 @@
 网络诊断工具，是在开发公司的自助手机回收机(MTA)时，开发的辅助工具。
 
 该工具的用途是判断 Android 系统是否网络通顺、提供 TCP、WebSocket 的客户端，便于调试。
+
+大体使用 Kotlin + LiveData + MVVM + Coroutines 
+
