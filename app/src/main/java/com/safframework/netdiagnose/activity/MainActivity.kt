@@ -1,7 +1,11 @@
 package com.safframework.netdiagnose.activity
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.safframework.ext.clickWithTrigger
 import com.safframework.log.L
@@ -28,6 +32,11 @@ class MainActivity : BaseActivity() {
 
     override fun initView() {
 
+        val permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 0)
+        }
+
         text1.clickWithTrigger {
 
             mainViewModel.getPingResult().observe(this, Observer {
@@ -47,5 +56,8 @@ class MainActivity : BaseActivity() {
 
             startActivity(Intent(this@MainActivity,WebSocketClientActivity::class.java))
         }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
     }
 }
