@@ -5,8 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import com.safframework.netdiagnose.app.BaseViewModel
 import com.safframework.netdiagnose.kotlin.function.Result
 import com.safframework.netdiagnose.kotlin.function.resultFrom
-import com.safframework.netdiagnose.utils.NetHelper
 import com.safframework.netdiagnose.utils.TCPUtils
+import com.safframework.utils.RxJavaUtils
+import io.reactivex.Observable
 
 /**
  *
@@ -23,7 +24,12 @@ class TCPClientViewModel : BaseViewModel() {
     fun getResult(cmd:String, host:String, port:Int, flag:Boolean): LiveData<Result<String, Exception>> {
 
         val result = resultFrom {
-            TCPUtils.sendMsgBySocket(cmd,host, port,flag)
+
+            Observable.create<String> {
+                TCPUtils.sendMsgBySocket(cmd,host, port,flag)
+            }
+            .compose(RxJavaUtils.observableToMain())
+            .blockingFirst()
         }
 
         liveData.postValue(result)

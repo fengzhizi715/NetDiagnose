@@ -1,7 +1,7 @@
 package com.safframework.netdiagnose.app
 
-import android.app.Application
 import android.content.Context
+import androidx.multidex.MultiDexApplication
 import com.safframework.netdiagnose.log.LogManager
 import kotlin.properties.Delegates
 
@@ -13,7 +13,7 @@ import kotlin.properties.Delegates
  * @date: 2020-01-18 21:40
  * @version: V1.0 <描述当前版本功能>
  */
-class App : Application() {
+class App : MultiDexApplication() {
 
     override fun onCreate() {
         super.onCreate()
