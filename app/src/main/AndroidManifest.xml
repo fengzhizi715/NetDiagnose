@@ -23,7 +23,7 @@
         </activity>
 
         <activity android:name=".activity.TCPClientActivity" />
-
+        <activity android:name=".activity.ConfigTCPClientActivity" />
         <activity android:name=".activity.WebSocketClientActivity" />
         <activity android:name=".activity.ConfigWSClientActivity" />
     </application>

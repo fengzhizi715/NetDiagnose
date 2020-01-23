@@ -1,5 +1,6 @@
 package com.safframework.netdiagnose.activity
 
+import android.content.Intent
 import android.text.TextUtils
 import android.widget.Toast
 import androidx.lifecycle.Observer
@@ -61,7 +62,12 @@ class TCPClientActivity : BaseActivity() {
         rece_list.adapter = mReceMessageAdapter
 
         config.clickWithTrigger {
+            val intent = Intent(this@TCPClientActivity,ConfigTCPClientActivity::class.java).apply {
+                putExtra("host",host)
+                putExtra("port",port)
+            }
 
+            startActivityForResult(intent,REQUEST_CODE_CONFIG)
         }
 
         send.clickWithTrigger {
@@ -126,5 +132,19 @@ class TCPClientActivity : BaseActivity() {
         val messageBean = MessageBean(System.currentTimeMillis(), message)
         mReceMessageAdapter.dataList.add(0, messageBean)
         runOnUiThread { mReceMessageAdapter.notifyDataSetChanged() }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == REQUEST_CODE_CONFIG && data!=null) {
+
+            host = data.getStringExtra("host")
+            port = data.getStringExtra("port").toInt()
+
+            L.i("host=$host, port=$port")
+
+            serverAddressViewModel.getAddress().value = "服务端地址: host=$host, port=$port"
+        }
     }
 }
