@@ -24,13 +24,17 @@ class ConfigTCPClientActivity : BaseActivity(){
     override fun initView() {
 
         intent.extras?.let {
-            val host = it.getString("host")
-            host_edit.text = Editable.Factory.getInstance().newEditable(host)
-            host_edit.setSelection(host!!.length)
 
-            val port = it.getInt("port",0)
-            port_edit.text = Editable.Factory.getInstance().newEditable(port.toString())
-            port_edit.setSelection(port_edit.text.toString().length)
+            it.getString("host")?.let {host ->
+                host_edit.text = Editable.Factory.getInstance().newEditable(host)
+                host_edit.setSelection(host.length)
+            }
+
+            it.getInt("port",0)?.let {port->
+                port_edit.text = Editable.Factory.getInstance().newEditable(port.toString())
+                port_edit.setSelection(port_edit.text.toString().length)
+            }
+
         }
 
         update.setOnClickListener {

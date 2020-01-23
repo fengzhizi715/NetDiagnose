@@ -23,9 +23,10 @@ class ConfigWSClientActivity :BaseActivity(){
     override fun initView() {
 
         intent.extras?.let {
-            val url = it.getString("url")
-            url_edit.text = Editable.Factory.getInstance().newEditable(url)
-            url_edit.setSelection(url!!.length)
+            it.getString("url")?.let { url->
+                url_edit.text = Editable.Factory.getInstance().newEditable(url)
+                url_edit.setSelection(url.length)
+            }
         }
 
         update.setOnClickListener {
