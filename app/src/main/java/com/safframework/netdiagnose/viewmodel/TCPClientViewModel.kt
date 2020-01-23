@@ -2,12 +2,13 @@ package com.safframework.netdiagnose.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
+import com.safframework.lifecycle.IO
 import com.safframework.netdiagnose.app.BaseViewModel
 import com.safframework.netdiagnose.kotlin.function.Result
 import com.safframework.netdiagnose.kotlin.function.resultFrom
 import com.safframework.netdiagnose.utils.TCPUtils
-import com.safframework.utils.RxJavaUtils
-import io.reactivex.Observable
+import kotlinx.coroutines.launch
 
 /**
  *
@@ -21,18 +22,21 @@ class TCPClientViewModel : BaseViewModel() {
 
     private var liveData = MutableLiveData<Result<String,Exception>>()
 
-    fun getResult(cmd:String, host:String, port:Int, flag:Boolean): LiveData<Result<String, Exception>> {
+    fun getResult(cmd:String, host:String, port:Int, flag:Boolean): LiveData<Result<String,Exception>> {
 
-        val result = resultFrom {
+        viewModelScope.launch {
 
-            Observable.create<String> {
-                TCPUtils.sendMsgBySocket(cmd,host, port,flag)
+            val job = launch(IO) {
+
+                val value = resultFrom {
+                    TCPUtils.sendMsgBySocket(cmd,host, port,flag)
+                }
+
+                liveData.postValue(value)
             }
-            .compose(RxJavaUtils.observableToMain())
-            .blockingFirst()
+            job.join()
         }
 
-        liveData.postValue(result)
         return liveData
     }
 }

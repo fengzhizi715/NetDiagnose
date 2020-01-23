@@ -3,6 +3,7 @@ package com.safframework.netdiagnose.utils;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.ConnectException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
@@ -48,13 +49,15 @@ public class TCPUtils {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
             IOUtilsKt.closeQuietly(os);
             IOUtilsKt.closeQuietly(is);
             IOUtilsKt.closeQuietly(socket);
         }
 
-        return null;
+        return "";
     }
 
     /**

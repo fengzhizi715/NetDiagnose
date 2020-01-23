@@ -92,7 +92,7 @@ class TCPClientActivity : BaseActivity() {
                             mSendMessageAdapter.notifyDataSetChanged()
                         }
 
-                        handlerMsg(it.get().toString())
+                        handlerMsg(it.toString())
                     }
                 })
 

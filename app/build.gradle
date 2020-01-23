@@ -28,17 +28,16 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.core:core-ktx:1.0.2'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.1.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-rc03'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
-
-    implementation "io.reactivex.rxjava2:rxandroid:${libs.rxandroid}"
-    implementation "io.reactivex.rxjava2:rxjava:${libs.rxjava}"
 
     implementation "com.safframework.log:saf-log-core:${libs.log_core}"
     implementation "com.safframework.log:saf-log-file:${libs.log_core}"
