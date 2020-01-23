@@ -74,6 +74,7 @@ class TCPClientActivity : BaseActivity() {
 
             val msg = send_et.text.toString()
             if (TextUtils.isEmpty(msg.trim { it <= ' ' })) {
+                Toast.makeText(this@TCPClientActivity, "请输入发送的消息", Toast.LENGTH_SHORT).show()
                 return@clickWithTrigger
             }
 

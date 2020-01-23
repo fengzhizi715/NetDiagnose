@@ -89,6 +89,7 @@ class WebSocketClientActivity : BaseActivity() {
 
                 val msg = send_et.text.toString()
                 if (TextUtils.isEmpty(msg.trim { it <= ' ' })) {
+                    Toast.makeText(this@WebSocketClientActivity, "请输入发送的消息", LENGTH_SHORT).show()
                     return@clickWithTrigger
                 }
 
@@ -143,5 +144,10 @@ class WebSocketClientActivity : BaseActivity() {
 
             serverAddressViewModel.getAddress().value = "服务端地址:$url"
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        wsClientViewModel.stop()
     }
 }
