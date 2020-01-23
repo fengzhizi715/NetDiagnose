@@ -13,7 +13,7 @@ ext {
 
             log_core               : "2.4.6",
 
-            lifecycle_coroutine_ext: "1.0.1"
+            lifecycle_coroutine_ext: "1.1.0"
     ]
 }
 

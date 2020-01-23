@@ -3,7 +3,7 @@ package com.safframework.netdiagnose.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.safframework.lifecycle.IO
+import com.safframework.lifecycle.runInBackground
 import com.safframework.netdiagnose.app.BaseViewModel
 import com.safframework.netdiagnose.kotlin.function.Result
 import com.safframework.netdiagnose.kotlin.function.resultFrom
@@ -26,7 +26,7 @@ class TCPClientViewModel : BaseViewModel() {
 
         viewModelScope.launch {
 
-            val job = launch(IO) {
+            val job = runInBackground {
 
                 val value = resultFrom {
                     TCPUtils.sendMsgBySocket(cmd,host, port,flag)
