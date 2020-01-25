@@ -3,7 +3,7 @@ package com.safframework.netdiagnose.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.safframework.lifecycle.runInBackground
+import com.safframework.kotlin.coroutines.runInBackground
 import com.safframework.netdiagnose.app.BaseViewModel
 import com.safframework.netdiagnose.kotlin.function.Result
 import com.safframework.netdiagnose.kotlin.function.resultFrom

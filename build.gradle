@@ -11,9 +11,9 @@ ext {
 
             kotlinx_coroutines_core: "1.3.3",
 
-            log_core               : "2.4.6",
+            log_core               : "2.4.7",
 
-            lifecycle_coroutine_ext: "1.1.0"
+            lifecycle_coroutine_ext: "1.1.1"
     ]
 }
 
