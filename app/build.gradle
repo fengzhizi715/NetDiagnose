@@ -47,7 +47,7 @@ dependencies {
     implementation 'com.safframework.utils:saf-kotlin-ext:0.2.0'
 
     implementation "com.safframework.lifecycle:lifecycle-coroutine-ext:${libs.lifecycle_coroutine_ext}"
-    implementation 'com.safframework.kotlin.coroutines:coroutines-utils:1.0.0'
+    implementation 'com.safframework.kotlin.coroutines:coroutines-utils:1.0.4'
 
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${libs.kotlinx_coroutines_core}"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${libs.kotlinx_coroutines_core}"
