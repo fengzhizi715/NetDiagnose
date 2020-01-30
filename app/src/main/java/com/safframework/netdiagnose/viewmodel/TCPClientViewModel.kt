@@ -3,7 +3,9 @@ package com.safframework.netdiagnose.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.safframework.kotlin.coroutines.exception.UncaughtCoroutineExceptionHandler
 import com.safframework.kotlin.coroutines.runInBackground
+import com.safframework.log.L
 import com.safframework.netdiagnose.app.BaseViewModel
 import com.safframework.netdiagnose.kotlin.function.Result
 import com.safframework.netdiagnose.kotlin.function.resultFrom
@@ -22,9 +24,14 @@ class TCPClientViewModel : BaseViewModel() {
 
     private var liveData = MutableLiveData<Result<String,Exception>>()
 
+    private val handler = UncaughtCoroutineExceptionHandler {
+
+        L.e(it.localizedMessage)
+    }
+
     fun getResult(cmd:String, host:String, port:Int, flag:Boolean): LiveData<Result<String,Exception>> {
 
-        viewModelScope.launch {
+        viewModelScope.launch(handler) {
 
             val job = runInBackground {
 
