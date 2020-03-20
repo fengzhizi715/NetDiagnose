@@ -16,8 +16,7 @@ data class Failure<out E>(val reason: E) : Result<Nothing, E>()
 inline fun <T> resultFrom(block: () -> T): Result<T, Exception> =
     try {
         Success(block())
-    }
-    catch (x: Exception) {
+    } catch (x: Exception) {
         Failure(x)
     }
 

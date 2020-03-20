@@ -54,6 +54,15 @@
                     android:textAllCaps="false" />
 
                 <Button
+                    android:id="@+id/connect"
+                    style="?android:textAppearanceSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="connect"
+                    android:textAllCaps="false" />
+
+                <Button
                     android:id="@+id/clear"
                     style="?android:textAppearanceSmall"
                     android:layout_width="match_parent"

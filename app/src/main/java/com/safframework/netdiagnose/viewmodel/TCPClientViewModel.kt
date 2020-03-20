@@ -1,6 +1,7 @@
 package com.safframework.netdiagnose.viewmodel
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.safframework.kotlin.coroutines.exception.UncaughtCoroutineExceptionHandler
@@ -10,7 +11,9 @@ import com.safframework.netdiagnose.app.BaseViewModel
 import com.safframework.netdiagnose.kotlin.function.Result
 import com.safframework.netdiagnose.kotlin.function.resultFrom
 import com.safframework.netdiagnose.utils.TCPUtils
+import com.safframework.netdiagnose.utils.closeQuietly
 import kotlinx.coroutines.launch
+import java.net.Socket
 
 /**
  *

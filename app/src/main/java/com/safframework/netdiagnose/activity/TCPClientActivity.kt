@@ -6,6 +6,9 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.safframework.ext.clickWithTrigger
+import com.safframework.kotlin.coroutines.runInBackground
+import com.safframework.kotlin.coroutines.withUI
+import com.safframework.lifecycle.extension.autoDisposeScope
 import com.safframework.log.L
 import com.safframework.netdiagnose.R
 import com.safframework.netdiagnose.adapter.MessageAdapter
@@ -14,16 +17,12 @@ import com.safframework.netdiagnose.domain.MessageBean
 import com.safframework.netdiagnose.kotlin.delegate.viewModelDelegate
 import com.safframework.netdiagnose.kotlin.extension.observe
 import com.safframework.netdiagnose.kotlin.function.get
+import com.safframework.netdiagnose.utils.closeQuietly
 import com.safframework.netdiagnose.viewmodel.ServerAddressViewModel
 import com.safframework.netdiagnose.viewmodel.TCPClientViewModel
 import kotlinx.android.synthetic.main.activity_tcp_client.*
-import kotlinx.android.synthetic.main.activity_tcp_client.clear
-import kotlinx.android.synthetic.main.activity_tcp_client.config
-import kotlinx.android.synthetic.main.activity_tcp_client.rece_list
-import kotlinx.android.synthetic.main.activity_tcp_client.send
-import kotlinx.android.synthetic.main.activity_tcp_client.send_et
-import kotlinx.android.synthetic.main.activity_tcp_client.send_list
-import kotlinx.android.synthetic.main.activity_tcp_client.server_address
+import kotlinx.coroutines.launch
+import java.net.Socket
 
 
 /**
@@ -68,6 +67,38 @@ class TCPClientActivity : BaseActivity() {
             }
 
             startActivityForResult(intent,REQUEST_CODE_CONFIG)
+        }
+
+        connect.clickWithTrigger {
+
+            if (host.isNotEmpty() && port>0) {
+                var socket:Socket?=null
+
+                connect.autoDisposeScope.launch {
+
+                    runInBackground {
+
+                        try {
+                            socket = Socket(host, port)
+
+                            withUI {
+                                Toast.makeText(this@TCPClientActivity, "TCP建立连接成功", Toast.LENGTH_SHORT).show()
+                            }
+                        } catch (e: Exception) {
+                            e.printStackTrace()
+
+                            withUI {
+                                Toast.makeText(this@TCPClientActivity, "TCP建立连接失败", Toast.LENGTH_SHORT).show()
+                            }
+                        } finally {
+                            closeQuietly(socket)
+                        }
+                    }
+
+                }
+            } else {
+                Toast.makeText(this@TCPClientActivity, "请先配置服务端地址，再尝试连接", Toast.LENGTH_SHORT).show()
+            }
         }
 
         send.clickWithTrigger {
