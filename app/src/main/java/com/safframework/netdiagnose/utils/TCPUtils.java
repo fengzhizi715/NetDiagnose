@@ -3,7 +3,6 @@ package com.safframework.netdiagnose.utils;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.ConnectException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
@@ -24,7 +23,7 @@ public class TCPUtils {
         try {
             socket = new Socket();
             socket.connect(new InetSocketAddress(host, port), 5000);
-            socket.setSoTimeout(3000);
+            socket.setSoTimeout(5000);
 
             os = socket.getOutputStream();
 
