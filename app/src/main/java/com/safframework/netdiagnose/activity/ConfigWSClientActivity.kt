@@ -31,7 +31,8 @@ class ConfigWSClientActivity :BaseActivity(){
 
         update.setOnClickListener {
 
-            if (url_edit.text.isNotBlank()) {
+            if (url_edit.text.isNotBlank() &&
+                (url_edit.text.startsWith("ws://")|| url_edit.text.startsWith("wss://"))) {
 
                 val intent = Intent(this@ConfigWSClientActivity, WebSocketClientActivity::class.java).apply {
                     putExtra("url", url_edit.text.toString())
@@ -41,7 +42,7 @@ class ConfigWSClientActivity :BaseActivity(){
                 finish()
             } else {
 
-                Toast.makeText(this@ConfigWSClientActivity, "请输入服务端地址", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@ConfigWSClientActivity, "请输入正确的服务端地址", Toast.LENGTH_LONG).show()
             }
         }
     }

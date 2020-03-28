@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:hint="输入WebSocket服务端地址"
+        android:singleLine="true"
         />
 
     <Button
