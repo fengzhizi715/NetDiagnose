@@ -16,4 +16,5 @@
 
 ## TODO List
 
+* WebSocket 服务支持 header、query String
 * 增加网络请求的抓包功能
