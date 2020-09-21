@@ -53,4 +53,6 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${libs.kotlinx_coroutines_core}"
 
     implementation "org.java-websocket:Java-WebSocket:1.4.0"
+
+    implementation 'cn.netdiscovery.kcommand:kcommand-core:1.2.6'
 }
