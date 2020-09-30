@@ -22,28 +22,22 @@ object NetHelper {
     val TAG = "NetHelper"
 
     fun ping(): Boolean {
-        try {
-            val ip = "www.baidu.com"// ping 的地址，可以换成任何一种可靠的外网
-//            val status = executeCommand("ping -c 1 -w 100 $ip", timeout)
+        val ip = "www.baidu.com"// ping 的地址，可以换成任何一种可靠的外网
 
-            val cmd = CommandBuilder("ping").withArgs("-c","1","$ip").build()
+        val cmd = CommandBuilder("ping").withArgs("-c","1","$ip").build()
 
-            val status = CommandExecutor.executeSync(cmd, null,5, TimeUnit.SECONDS,object : Appender {
-                override fun appendStdText(text: String) {
-                }
+        val status = CommandExecutor.executeSync(cmd, null,5, TimeUnit.SECONDS,object : Appender {
+            override fun appendStdText(text: String) {
+            }
 
-                override fun appendErrText(text: String) {
-                }
+            override fun appendErrText(text: String) {
+            }
 
-            }).getExecutionResult().exitValue()
+        }).getExecutionResult().exitValue()
 
-            L.d("status = $status")
+        L.d("status = $status")
 
-            // ping的状态
-            return status == 0
-        } catch (e: Exception) {
-            L.d(TAG, "ping失败：" + e.message)
-        }
-        return false
+        // ping 的状态
+        return status == 0
     }
 }
